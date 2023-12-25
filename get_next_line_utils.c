@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oel-moue <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/25 16:41:18 by oel-moue          #+#    #+#             */
+/*   Updated: 2023/12/25 16:41:29 by oel-moue         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "get_next_line.h"
 #include <stdlib.h>
 
@@ -16,7 +27,7 @@ char	*ft_strchr(const char *str, int c)
 	}
 	if (s[i] == (char)c)
 		return (s + i);
-	return(NULL);
+	return (NULL);
 }
 
 size_t	ft_strlen(const char *str)
@@ -28,6 +39,7 @@ size_t	ft_strlen(const char *str)
 		i++;
 	return (i);
 }
+
 char	*ft_strncpy(char *dest, char *src, unsigned int n)
 {
 	unsigned int	i;
@@ -40,6 +52,7 @@ char	*ft_strncpy(char *dest, char *src, unsigned int n)
 	}
 	return (dest);
 }
+
 char	*ft_strcat(char *dest, char *src)
 {
 	int	i;
