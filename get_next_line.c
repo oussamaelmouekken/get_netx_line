@@ -1,5 +1,4 @@
 #include "get_next_line.h"
-#include <stdlib.h>
 
 char *get_next_line(int fd)
 {
@@ -8,12 +7,13 @@ char *get_next_line(int fd)
     static char *stock = NULL;
     size_t d = 1;
 
-
-    buffer = malloc( BUFFER_SIZE + 1);
     if(fd < 0 || BUFFER_SIZE <= 0)
      return(0);
+
+    buffer = malloc( BUFFER_SIZE + 1);
     if(!buffer)
-     return(NULL);
+     return NULL;
+
     while(d > 0)
     {
         d = read(fd, buffer, BUFFER_SIZE);
@@ -45,7 +45,7 @@ char *get_next_line(int fd)
 
         if (linepas != NULL)
         {
-            line_length = linepas - stock; 
+            line_length = linepas - stock + 1; 
             line = malloc(line_length + 1);
             if (line == NULL)
                 return (0);
@@ -55,16 +55,19 @@ char *get_next_line(int fd)
             char *temp = ft_strdup(linepas + 1);
             free(stock);
             stock = temp;
-            return(line);
+            return (line);
         }
     }
     return (NULL);
 }
-int main () 
-{
-    int f;
-    f = open("abdo.txt",O_RDONLY | O_CREAT,0644);
-    
-    printf("%s",get_next_line(f));
-    printf("%s",get_next_line(f));
-}
+// int main () 
+// {
+//     int f;
+//     f = open("abdo.txt",O_RDONLY | O_CREAT,0644);
+
+//     printf("%s",get_next_line(f));
+//     printf("%s",get_next_line(f));
+//     printf("%s",get_next_line(f));
+//     printf("%s",get_next_line(f));
+//     printf("%s",get_next_line(f));
+// }
