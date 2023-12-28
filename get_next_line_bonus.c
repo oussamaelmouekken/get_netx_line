@@ -1,15 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oel-moue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/25 16:40:31 by oel-moue          #+#    #+#             */
-/*   Updated: 2023/12/28 02:12:45 by oel-moue         ###   ########.fr       */
+/*   Created: 2023/12/28 03:35:22 by oel-moue          #+#    #+#             */
+/*   Updated: 2023/12/28 03:35:27 by oel-moue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "get_next_line.h"
+
+#include "get_next_line_bonus.h"
 
 char	*read_fd(int fd, char *stock)
 {
@@ -87,28 +88,31 @@ char	*rest(char *stock)
 	return (str);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line_bonus(int fd)
 {
 	char		*line;
-	static char	*stock;
+	static char	*stock[1024];
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > 1024)
 		return (0);
-	stock = read_fd(fd, stock);
-	line = ft_get_line(stock);
-	stock = rest(stock);
+	stock[fd] = read_fd(fd, stock[fd]);
+	line = ft_get_line(stock[fd]);
+	stock[fd] = rest(stock[fd]);
 	return (line);
 }
 
 // int	main(void)
-// {
-//  	int f;
+//  {
+//  	int f,f1,f2;
 //  	f = open("ab.txt", O_RDONLY | O_CREAT, 0644);
-//  	char *p = get_next_line(f);
-//  	printf("%s", p);
- 	
-//  	char *t = get_next_line(f);
-//  	printf("%s", t);
- 	
+//     f1 = open("ab1.txt", O_RDONLY | O_CREAT, 0644);
+//     f2 = open("ab2.txt", O_RDONLY | O_CREAT, 0644);
 
+//     char *p = get_next_line_bonus(f);
+//     char *p1 = get_next_line_bonus(f1);
+
+//     printf("%s",p);
+//     free(p);
+//     printf("%s",p1);
+//     free(p1);
 // }

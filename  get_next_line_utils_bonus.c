@@ -1,15 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*    get_next_line_utils_bonus.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oel-moue <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/25 16:41:18 by oel-moue          #+#    #+#             */
-/*   Updated: 2023/12/25 16:41:29 by oel-moue         ###   ########.fr       */
+/*   Created: 2023/12/28 03:36:12 by oel-moue          #+#    #+#             */
+/*   Updated: 2023/12/28 03:36:20 by oel-moue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_strchr(const char *str, int c)
 {
