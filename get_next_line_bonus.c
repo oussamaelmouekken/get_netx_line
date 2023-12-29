@@ -46,16 +46,15 @@ char	*ft_get_line(char *stock)
 	i = 0;
 	while (stock[i] != '\0' && stock[i] != '\n')
 		i++;
-	temp = malloc(i + 1);
+	temp = malloc(i + 2);
 	if (temp == NULL)
-		return (free(stock),NULL);
+		return (free(stock), NULL);
 	i = 0;
 	j = 0;
 	while (stock[i] && stock[i] != '\n')
 		temp[j++] = stock[i++];
 	if (stock[i] == '\n')
-		temp[j] = stock[i];
-	j++;
+		temp[j++] = stock[i];
 	temp[j] = '\0';
 	return (temp);
 }
@@ -68,7 +67,7 @@ char	*rest(char *stock)
 
 	i = 0;
 	if (stock == NULL)
-		return ( NULL);
+		return (NULL);
 	while (stock[i] && stock[i] != '\n')
 		i++;
 	if (stock[i] == '\0')
@@ -88,31 +87,17 @@ char	*rest(char *stock)
 	return (str);
 }
 
-char	*get_next_line_bonus(int fd)
+char	*get_next_line(int fd)
 {
 	char		*line;
 	static char	*stock[1024];
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || fd > 1024)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > 1024 || BUFFER_SIZE > INT_MAX)
 		return (0);
 	stock[fd] = read_fd(fd, stock[fd]);
+	if (stock[fd] == NULL)
+		return (NULL);
 	line = ft_get_line(stock[fd]);
 	stock[fd] = rest(stock[fd]);
 	return (line);
 }
-
-// int	main(void)
-//  {
-//  	int f,f1,f2;
-//  	f = open("ab.txt", O_RDONLY | O_CREAT, 0644);
-//     f1 = open("ab1.txt", O_RDONLY | O_CREAT, 0644);
-//     f2 = open("ab2.txt", O_RDONLY | O_CREAT, 0644);
-
-//     char *p = get_next_line_bonus(f);
-//     char *p1 = get_next_line_bonus(f1);
-
-//     printf("%s",p);
-//     free(p);
-//     printf("%s",p1);
-//     free(p1);
-// }

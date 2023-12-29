@@ -45,16 +45,18 @@ char	*ft_get_line(char *stock)
 	i = 0;
 	while (stock[i] != '\0' && stock[i] != '\n')
 		i++;
-	temp = malloc(i + 1);
+	temp = malloc(i + 2);
 	if (temp == NULL)
-		return (free(stock),NULL);
+	{
+		free(stock);
+		return (NULL);
+	}
 	i = 0;
 	j = 0;
 	while (stock[i] && stock[i] != '\n')
 		temp[j++] = stock[i++];
 	if (stock[i] == '\n')
-		temp[j] = stock[i];
-	j++;
+		temp[j++] = stock[i];
 	temp[j] = '\0';
 	return (temp);
 }
@@ -67,7 +69,7 @@ char	*rest(char *stock)
 
 	i = 0;
 	if (stock == NULL)
-		return ( NULL);
+		return (NULL);
 	while (stock[i] && stock[i] != '\n')
 		i++;
 	if (stock[i] == '\0')
@@ -92,23 +94,12 @@ char	*get_next_line(int fd)
 	char		*line;
 	static char	*stock;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX)
 		return (0);
 	stock = read_fd(fd, stock);
+	if (stock == NULL)
+		return (NULL);
 	line = ft_get_line(stock);
 	stock = rest(stock);
 	return (line);
 }
-
-// int	main(void)
-// {
-//  	int f;
-//  	f = open("ab.txt", O_RDONLY | O_CREAT, 0644);
-//  	char *p = get_next_line(f);
-//  	printf("%s", p);
- 	
-//  	char *t = get_next_line(f);
-//  	printf("%s", t);
- 	
-
-// }
